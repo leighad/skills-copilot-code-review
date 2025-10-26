@@ -12,14 +12,10 @@
     />
   </head>
   
-  
-
-
-
   <body>
-    <div class="announcement-banner">
+    <!-- <div class="announcement-banner">
       📢 Activity registration is open until the end of the month. Don't lose your spot!
-    </div>
+    </div> -->
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
@@ -31,6 +27,7 @@
           </button>
           <div id="user-info" class="hidden">
             <span id="display-name"></span>
+            <button id="manage-announcements-button" class="manage-button">📢 Manage Announcements</button>
             <button id="logout-button">Logout</button>
           </div>
         </div>
@@ -38,6 +35,9 @@
     </header>
 
     <main>
+      <!-- Dynamic announcements will be loaded here -->
+      <div id="announcements-container"></div>
+
       <section id="activities-container">
         <div class="main-content-layout">
           <!-- Left Sidebar for Filters -->
@@ -142,7 +142,51 @@
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Announcement Management Modal -->
+    <div id="announcement-modal" class="modal hidden">
+      <div class="modal-content announcement-modal-content">
+        <span class="close-announcement-modal">&times;</span>
+        <h3>Manage Announcements</h3>
+        
+        <!-- Add/Edit Form -->
+        <div class="announcement-form-section">
+          <h4 id="announcement-form-title">Add New Announcement</h4>
+          <form id="announcement-form">
+            <div class="form-group">
+              <label for="announcement-message">Message:</label>
+              <textarea id="announcement-message" required placeholder="Enter announcement message..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="announcement-start-date">Start Date (Optional):</label>
+              <input type="datetime-local" id="announcement-start-date" />
+            </div>
+            
+            <div class="form-group">
+              <label for="announcement-end-date">End Date (Required):</label>
+              <input type="datetime-local" id="announcement-end-date" required />
+            </div>
+            
+            <div class="form-actions">
+              <button type="submit" id="save-announcement-btn">Save Announcement</button>
+              <button type="button" id="cancel-announcement-btn">Cancel</button>
+            </div>
+            
+            <input type="hidden" id="editing-announcement-id" value="" />
+          </form>
+        </div>
+        
+        <!-- Announcements List -->
+        <div class="announcements-list-section">
+          <h4>Existing Announcements</h4>
+        <div id="announcements-management-list">
+          <p>Loading announcements...</p>
+        </div>
+      </div>
+      
+      <div id="announcement-modal-message" class="hidden message"></div>
+    </div>
+  </div>    <script src="app.js"></script>
   </body>
 
 </html>
